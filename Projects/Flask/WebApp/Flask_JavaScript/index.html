@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function callPythonFunction() {
+            const data = { value: 10 };
+
+            fetch('/call_function', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json() )
+            .then(data => {
+                console.log('Success:', data.result);
+                document.getElementById('result').innerText = 'Result: ' + data.result;
+            })
+            .catch((error) => {
+                console.error('Error: ', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <button onclick="callPythonFunction()">Click Me</button>
+    <div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channels</title>
+</head>
+<body>
+    <h1>List of Channels</h1>
+
+    <script>
+        fetch("http://127.0.0.1:5000/channels", {
+            mode: 'no-cors',
+            method: "get",
+            headers: {
+                 "Content-Type": "application/json"
+            },
+            // body: JSON.stringify(ob)
+        })
+        // .then(res => console.log(res))
+        .then(res => console.log(res))
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channels</title>
+</head>
+<body>
+    <h1>List of Channels</h1>
+    <ul id="channel-list"></ul>
+
+    <script>
+        fetch("http://127.0.0.1:5000/channels", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => res.json())  // Parse the response as JSON
+        .then(data => {
+            console.log(data);
+            const channelList = document.getElementById('channel-list');
+            data.channel.forEach(channel => {
+                const li = document.createElement('li');
+                li.textContent = channel;
+                channelList.appendChild(li);
+            });
+        })
+        .catch(error => console.log(error));
+    </script>
+</body>
+</html>
