@@ -1,0 +1,23 @@
+# Ignore Python Cache File
+__pycache__
+*__pycache__
+
+# Ignore Virtual Env. directories
+*.env
+*env
+*venv
+*.venv
+venv/
+env/
+
+# Ignore MacOS System files
+*.DS_Store
+*DS_Store
+
+# Ignore Windoes files
+Thumbs.db
+
+# Ignore other custom files
+*notes*.txt
+*notes*.md
+

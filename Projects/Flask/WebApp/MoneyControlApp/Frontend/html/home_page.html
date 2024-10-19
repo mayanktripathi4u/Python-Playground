@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+
+    <h1 id="page-title">Home Page</h1>
+    <p id="message"></p>
+    <div id="payload"></div>
+
+    <script>
+        fetch("http://127.0.0.1:5002", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => res.json())  // Parse the response as JSON
+        .then(data => {
+            console.log(data);
+            
+            // Update the title of the page
+            document.title = data.title;
+
+            // Update the content of the h1 tag
+            document.getElementById('page-title').textContent = data.title;
+
+            // Update the content of the message paragraph
+            document.getElementById('message').textContent = data.message;
+
+            // Handle the payload data if it exists
+            const payloadDiv = document.getElementById('payload');
+            if (Object.keys(data.payload).length > 0) {
+                const payloadContent = JSON.stringify(data.payload, null, 2); // Formatting JSON
+                payloadDiv.textContent = `Payload Data: ${payloadContent}`;
+            } else {
+                payloadDiv.textContent = "No payload data available.";
+            }
+        })
+        .catch(error => console.log(error));
+    </script>
+</body>
+</html>

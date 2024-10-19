@@ -1,0 +1,62 @@
+
+{% extends 'app_template.html' %}
+{% block content %}
+<script>
+    function toggleForms() {
+        var dataType = document.getElementById('data_type').value;
+        document.getElementById('category_form').style.display = dataType === 'category' ? 'block' : 'none';
+        document.getElementById('subcategory_form').style.display = dataType === 'subcategory' ? 'block' : 'none';
+        document.getElementById('product_form').style.display = dataType === 'product' ? 'block' : 'none';
+    }
+</script>
+
+<div class="container">
+  <h2>Insert Master Data</h2>
+  <form action="{{ url_for('submit') }}" method="post">
+    <label for="data_type">Select Data Type:</label>
+    <select id="data_type" name="data_type" onchange="toggleForms()" required> 
+        <option value="" disabled selected>Select</option>
+        <option value="category">Category</option>
+        <option value="subcategory">Subcategory</option>
+        <option value="product">Product</option>
+    </select>
+    <br><br>
+    <div id="category_form" style="display:none;">
+        <label for="category">Category Name:</label>
+        <input type="text" id="category" name="category">
+    </div>
+
+        <div id="subcategory_form" style="display:none;">
+            <label for="subcategory">Subcategory Name:</label>
+            <input type="text" id="subcategory" name="subcategory">
+            <br><br>
+            <label for="category_id">Select Category:</label>
+            <select id="category_id" name="category_id">
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.category }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div id="product_form" style="display:none;">
+            <label for="product">Product Name:</label>
+            <input type="text" id="product" name="product">
+            <br><br>
+            <label for="subcategory_id">Select Sub-Category:</label>
+            <select id="subcategory_id" name="subcategory_id">
+                {% for subcategory in subcategories %}
+                    <option value="{{ subcategory.id }}">{{ subcategory.subcategory }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <br>
+        <label for="create_by">Created By:</label>
+        <input type="text" id="create_by" name="create_by" required>
+        <br><br>
+        <button type="submit" class="mt-4">Submit</button>
+        <a href="{{ url_for('dashboard_api') }}" class="btn btn-info mt-4">Dashboard</a>
+    </form>
+</div>
+
+{% endblock %}

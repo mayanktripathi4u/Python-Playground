@@ -1,0 +1,143 @@
+{% extends 'base_template.html' %}
+
+{% block title %}Expense Details{% endblock %}
+
+{% block additional_css %}
+    <!-- Load jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include Select2 CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <a href="{{ url_for('core.dashboard') }}" class="btn btn-info mt-4">Dashboard</a>
+    <a href="{{ url_for('core.list_categories_v2') }}" class="btn btn-info mt-4">Manage Category</a>
+    <a href="{{ url_for('core.add_expense') }}" class="btn btn-info mt-4">Back to Expense</a>
+    
+    <br>
+    <br>
+    <h2>Add Expense Details for Expense #{{ expense.id }} </h2>
+    <h4>
+        <span style="color: blue;">From :</span> 
+        <span style="color: green;">{{ expense.purchase_from }}</span> 
+        <span style="color: blue;">On :</span> 
+        <span style="color: green;">{{ expense.purchase_date.strftime('%d-%b-%Y') }}</span> 
+        <span style="color: blue;">Paid :</span> 
+        <span style="color: green;">${{ expense.total_amount }}</span>
+    </h4>
+    
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form.product_id.label }} 
+                {{ form.product_id(class="form-control", id="product_id_select") }}
+            </div>
+
+            <div class="form-group col-md-4">
+                {{ form.quantity.label }} {{ form.quantity(class="form-control") }}
+            </div>
+
+            <div class="form-group col-md-4">
+                {{ form.amount_paid.label }} {{ form.amount_paid(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                {{ form.discount.label }} {{ form.discount(class="form-control") }}
+            </div>
+
+            <div class="form-group col-md-10">
+                {{ form.description.label }} {{ form.description(class="form-control") }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ form.submit.label }}</button>
+    </form>
+    <br>
+    <br>
+
+    <!-- Display expenses details -->
+    <!-- <h3>Expense Details for Expense (From : {{ expense.purchase_from }} On : {{ expense.purchase_date.strftime('%d-%m-%Y') }} For : ${{ expense.total_amount }})</h3> -->
+
+    <h3>Expense Details : Total Amount Recorded ==> $ {{ total_amount }}</h3>
+
+    {% if total_amount == expense.total_amount %}
+    <!-- Do nothing if the total_amount matches the expense_amount -->
+    {% elif total_amount < expense.total_amount %}
+        <h3><span style="color: red;">Pending: ${{ "%.2f"|format(expense.total_amount - total_amount) }}</span></h3>
+    {% elif total_amount > expense.total_amount %}
+        <h3><span style="color: purple;">Overpaid: ${{ "%.2f"|format(total_amount - expense.total_amount) }}</span></h3>
+    {% endif %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Amount Paid</th>
+                <th>Discount</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody> 
+            {% for detail in expense_details %}
+            <tr>
+                <td>{{ detail.product.name }}</td>  <!-- Display the product name -->
+                <td>{{ detail.quantity }}</td>
+                <td>{{ detail.amount_paid }}</td>
+                <td>{{ detail.discount if detail.discount else 'N/A' }}</td>
+                <td>{{ detail.description if detail.description else 'N/A' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+
+<script>
+    // Initialize Select2 with autocomplete search
+    $(document).ready(function() {
+        $('#product_id_select').select2({
+            placeholder: "Select or type a product",
+            allowClear: true,
+            ajax: {
+                url: "{{ url_for('core.autocomplete_product') }}",  // Flask route to fetch products
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    console.log("Search term typed: ", params.term);  // Log the typed search term
+                    return {
+                        q: params.term // search term
+                    };
+                },
+                beforeSend: function() {
+                    console.log("AJAX request is about to be made...");  // Log before sending request
+                },
+                processResults: function (data) {
+                    console.log("Received response: ", data);  // Log the response data
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.name
+                            };
+                        })
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1, // Start searching after typing 1 character
+        });
+    });
+</script>
+
+{% endblock %}
+

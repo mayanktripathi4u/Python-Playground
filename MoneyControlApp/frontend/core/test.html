@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/core/v2/test" method="POST"></form>
+    <div class="form-group">
+        {{ subcat_form.category.label }} {{ subcat_form.category }}
+    </div>
+    <div class="form-group">
+        {{ subcat_form.name.label }} {{ subcat_form.name }}
+    </div>
+    
+    <div class="form-group">
+        {{ subcat_form.submit_subcategory(class="btn btn-secondary") }}
+    </div>
+</body>
+</html>

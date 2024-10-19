@@ -1,0 +1,27 @@
+
+{% extends 'app_template.html' %}
+{% block content %}
+
+<div class="container">
+  <h2>Welcome to Dashboard Page</h2>
+  {% if user %}
+    <p>User Information</p>
+    <ul>
+        <li>Name : {{ user[1] }} </li>
+        <li>Email : {{ user[2] }} </li>
+    </ul>
+
+    <br>
+    <a href="{{ url_for('seed_data_api') }}" class="btn btn-info mt-4">Add Master Data</a>
+
+    <a href="{{ url_for('seed_data_api_v2') }}" class="btn btn-info mt-4">Add Master Data V2</a>
+
+    <a href="{{ url_for('add_api') }}" class="btn btn-info mt-4">Add Category</a>
+
+    <a href="{{ url_for('manage_expense') }}" class="btn btn-info mt-4">Manage Expense</a>
+
+    <a href="/logout" class="btn btn-dark mt-4">Logout</a>
+  {% endif %}
+</div>
+
+{% endblock %}

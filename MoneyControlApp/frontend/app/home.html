@@ -1,0 +1,18 @@
+
+{% extends 'base_template.html' %}
+
+{% block title %}Home Page{% endblock %}  <!-- Override the title block -->
+
+{% block content %}
+
+    <div class="container">
+        <h1>Home Page</h1>
+
+        Important Links <br>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-info mt-4">Login Page</a>
+        <br>
+        <a href="{{ url_for('auth.register_api') }}" class="btn btn-info mt-4">Registration</a>
+        <br>
+    </div>
+
+{% endblock %}

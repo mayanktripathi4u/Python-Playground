@@ -72,3 +72,6 @@ JavaScript to handle API calls and DOM manipulation.
 * Security: Secure the APIs using authentication (e.g., JWT) and follow best practices for handling sensitive data.
 * Testing: Implement unit and integration tests for both backend services and frontend scripts.
 
+# Testing
+Refer [code](/Python-Playground/Projects/Flask/WebApp/Decouple_App/__dev__.http)
+[Details on how to](/Python-Playground/Projects/Flask/WebApp/MoneyControlApp/HTTP_Testing.md)

@@ -1,0 +1,145 @@
+
+{% extends 'app_template.html' %}
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Function to fetch product suggestions
+            function fetchProductSuggestions(query, selectElement) {
+                $.getJSON('/fetch_products_api', { query: query }, function(data) {
+                    selectElement.empty();
+                    selectElement.append('<option value="">Select Product</option>');
+                    $.each(data, function(index, product) {
+                        selectElement.append('<option value="' + product.id + '">' + product.product + '</option>');
+                    });
+                });
+            }
+
+            // Event listener for product search
+            $(document).on('input', '.product-input', function() {
+                var input = $(this);
+                var select = input.siblings('select');
+                var query = input.val();
+                fetchProductSuggestions(query, select);
+            });
+
+            // Initialize the form with an empty product dropdown
+            $('.product-input').each(function() {
+                var input = $(this);
+                var select = input.siblings('select');
+                fetchProductSuggestions('', select);
+            });
+        });
+
+        // To dynamically add or remove entries from the FieldList - Payment Details 
+        function addPaymentDetail() {
+            var container = document.getElementById('payment-details-container');
+            var index = container.children.length;
+            if (index < 5) { // Check max_entries constraint
+                var newForm = document.createElement('div');
+                newForm.className = 'payment-detail';
+                newForm.innerHTML = `
+                    <div class="form-group">
+                        <label for="payment_details_${index}_paid_via">Paid Via:</label>
+                        <select name="payment_details-${index}-paid_via" id="payment_details_${index}_paid_via">
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment_details_${index}_card_number">Card Number (Last 4 Digits):</label>
+                        <input type="text" name="payment_details-${index}-card_number" id="payment_details_${index}_card_number">
+                    </div>
+                    <div class="form-group">
+                        <label for="payment_details_${index}_amount_paid">Amount Paid:</label>
+                        <input type="number" step="0.01" name="payment_details-${index}-amount_paid" id="payment_details_${index}_amount_paid">
+                    </div>
+                    <button type="button" class="remove-btn" onclick="removePaymentDetail(this)">Remove</button>
+                `;
+                container.appendChild(newForm);
+            } else {
+                alert('Cannot add more than 5 payment details.');
+            }
+        }
+
+        function removePaymentDetail(button) {
+            var container = document.getElementById('payment-details-container');
+            container.removeChild(button.parentElement);
+        }
+    </script>
+
+    <h1>Manage Expense</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <fieldset>
+            <legend>Expenses</legend>
+            <div>
+                {{ form.expense.purchase_from.label }} {{ form.expense.purchase_from() }}
+            </div>
+            <div>
+                {{ form.expense.purchase_date.label }} {{ form.expense.purchase_date() }}
+            </div>
+            <div>
+                {{ form.expense.total_amount.label }} {{ form.expense.total_amount() }}
+            </div>
+            <div>
+                {{ form.expense.short_desc.label }} {{ form.expense.short_desc() }}
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Expense Details</legend>
+            {% for detail_form in form.expense_details %}
+                <div>
+                    <!-- {{ detail_form.product_purchased.label }} {{ detail_form.product_purchased() }} -->
+                    {{ detail_form.product_purchased.label }}
+                    <input type="text" class="product-input" placeholder="Start typing to search...">
+                    {{ detail_form.product_purchased() }}
+                </div>
+                <div>
+                    {{ detail_form.amount.label }} {{ detail_form.amount() }}
+                </div>
+                <div>
+                    {{ detail_form.description.label }} {{ detail_form.description }}
+                </div>
+            {% endfor %}
+        </fieldset>
+
+        <fieldset>
+            <legend>Payment Details</legend>
+            <div id="payment-details-container">
+            {% for payment_form in form.payment_details %}
+                <!-- <div>
+                    {{ payment_form.paid_via.label }} {{ payment_form.paid_via() }}
+                </div> -->
+                <!-- <div>
+                    {{ payment_form.card_number.label }} {{ payment_form.card_number() }}
+                </div> -->
+                <!-- <div>
+                    {{ payment_form.amount_paid.label }} {{ payment_form.amount_paid() }}
+                </div> -->
+                
+                <div class="payment-detail">
+                    <div class="form-group">
+                        {{ payment_form.paid_via.label }} {{ payment_form.paid_via() }}
+                    </div>
+                    <div class="form-group">
+                        {{ payment_form.card_number.label }} {{ payment_form.card_number() }}
+                    </div>
+                    <div class="form-group">
+                        {{ payment_form.amount_paid.label }} {{ payment_form.amount_paid() }}
+                    </div>
+                    <button type="button" class="remove-btn" onclick="removePaymentDetail(this)">Remove</button>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" class="add-btn" onclick="addPaymentDetail()">Add Payment Detail</button>
+        </fieldset>
+
+        <button type="submit">Submit</button>
+        <a href="{{ url_for('dashboard_api') }}" class="btn btn-info mt-4">Dashboard</a>
+    </form>
+
+
+{% endblock %}

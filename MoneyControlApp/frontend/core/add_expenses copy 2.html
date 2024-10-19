@@ -1,0 +1,124 @@
+{% extends 'base_template.html' %}
+
+{% block title %}Manage Expense{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <h2>Add a New Expense</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form.purchase_from.label }} {{ form.purchase_from(class="form-control") }}
+            </div>
+
+            <div class="form-group col-md-4">
+                {{ form.purchase_date.label }} {{ form.purchase_date(class="form-control") }}
+            </div>
+
+            <div class="form-group col-md-4">
+                {{ form.total_amount.label }} {{ form.total_amount(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form.description.label }} {{ form.description(class="form-control", rows=1) }}
+        </div>
+
+        <div id="payment-details">
+            {% for payment_form in form.payment_details %}
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        {{ payment_form.pay_mode.label }} {{ payment_form.pay_mode(class="form-control") }}
+                    </div>
+                    <div class="form-group col-md-3">
+                        {{ payment_form.amount_paid.label }} {{ payment_form.amount_paid(class="form-control") }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button type="button" class="btn btn-secondary" id="add-row">Add Another Payment</button>
+        <br><br>
+
+        <div class="form-group">
+            {{ form.submit_expense(class="btn btn-primary") }}
+        </div>
+    </form>
+
+
+    <!-- Search form for past expenses -->
+    <h3>Search Expenses</h3>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form.search_query.label }} {{ form.search_query(class="form-control") }}
+            </div>
+
+        
+            <div class="form-group col-md-4">
+                {{ form.start_date.label }} {{ form.start_date(class="form-control") }}
+            </div>
+
+            <div class="form-group col-md-4">
+                {{ form.end_date.label }} {{ form.end_date(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form.submit_search(class="btn btn-primary") }}
+        </div>
+    </form>
+
+    <!-- Display search results -->
+    {% if search_results %}
+    <h4>Search Results</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Purchase From</th>
+                <th>Purchase Date</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Payment Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in search_results %}
+            <tr>
+                <td>{{ expense.purchase_from }}</td>
+                <td>{{ expense.purchase_date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ expense.total_amount }}</td>
+                <td>{{ expense.description }}</td>
+                <td>
+                    {% for pay in expense.payment_details %}
+                        {{ pay.pay_mode }} ==> {{ pay.amount_paid }}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">No expenses found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+
+</div>
+
+
+<script>
+    // JavaScript to dynamically add more payment rows
+    document.getElementById('add-row').addEventListener('click', function() {
+        let paymentDetailsDiv = document.getElementById('payment-details');
+        let newPaymentRow = paymentDetailsDiv.children[0].cloneNode(true);
+        paymentDetailsDiv.appendChild(newPaymentRow);
+    });
+</script>
+
+{% endblock %}

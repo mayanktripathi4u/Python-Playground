@@ -1,0 +1,15 @@
+{% extends 'app_template.html' %}
+{% block content %}
+
+<div class="container">
+  <h2>Home Page</h2>
+
+  Important Links <br>
+  <a href="{{ url_for('login_api') }}" class="btn btn-info mt-4">Login Page</a>
+  <br>
+  <a href="{{ url_for('register_api') }}" class="btn btn-info mt-4">Registration</a>
+  <br>
+  <a href="{{ url_for('dashboard_api') }}" class="btn btn-info mt-4">Dashboard</a>
+</div>
+
+{% endblock %}

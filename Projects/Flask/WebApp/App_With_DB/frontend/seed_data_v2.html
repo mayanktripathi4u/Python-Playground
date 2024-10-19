@@ -1,0 +1,121 @@
+
+{% extends 'app_template.html' %}
+{% block content %}
+    <script>
+        function fetchSubcategories(categoryId) {
+            fetch(`/fetch_subcategories/${categoryId}`)
+                .then(response => response.json())
+                .then(data => {
+                    let subcategorySelect = document.getElementById('subcategory_id');
+                    subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
+                    data.forEach(item => {
+                        let option = document.createElement('option');
+                        option.value = item.id;
+                        option.text = item.subcategory;
+                        subcategorySelect.add(option);
+                    });
+                });
+        }
+
+        function fetchProducts(subcategoryId) {
+            fetch(`/fetch_products/${subcategoryId}`)
+                .then(response => response.json())
+                .then(data => {
+                    let productSelect = document.getElementById('product_id');
+                    productSelect.innerHTML = '<option value="">Select Product</option>';
+                    data.forEach(item => {
+                        let option = document.createElement('option');
+                        option.value = item.id;
+                        option.text = item.product;
+                        productSelect.add(option);
+                    });
+                });
+        }
+
+        function updateSubcategories() {
+            let categoryId = document.getElementById('category_id').value;
+            fetchSubcategories(categoryId);
+        }
+
+        function updateProducts() {
+            let subcategoryId = document.getElementById('subcategory_id').value;
+            fetchProducts(subcategoryId);
+        }
+    </script>
+
+    <h1>Dynamic Dropdowns and Data Entry</h1>
+
+    <h2>Add Data</h2>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <form action="/seed_data_v2_add" method="post">
+        <div>
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category">
+        </div>
+        <div>
+            <label for="subcategory">Subcategory:</label>
+            <select id="category_id" name="category_id" onchange="updateSubcategories()">
+                <option value="">Select Category</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.category }}</option>
+                {% endfor %}
+            </select>
+            <select id="subcategory_id" name="subcategory_id" onchange="updateProducts()">
+                <option value="">Select Subcategory</option>
+                {% for subcategory in subcategories  %}
+                    <option value="{{ subcategory.id }}">{{ subcategory.subcategory }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" id="subcategory" name="subcategory">
+        </div>
+        <div>
+            <label for="product">Product:</label>
+            <select id="product_id" name="subcategory_id">
+                <option value="">Select Product</option>
+                {% for product in products  %}
+                    <option value="{{ product.id }}">{{ product.product }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" id="product" name="product">
+        </div>
+        <input type="submit" value="Add">
+        <a href="{{ url_for('dashboard_api') }}" class="btn btn-info mt-4">Dashboard</a>
+    </form>
+    <br><br>
+    <h2>Current Data</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Subcategory</th>
+                <th>Product</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+                {% for subcategory in subcategories if subcategory.category_id == category.id %}
+                    {% for product in products if product.subcategory_id == subcategory.id %}
+                    <tr>
+                        <td>{{ category.category }}</td>
+                        <td>{{ subcategory.subcategory }}</td>
+                        <td>{{ product.product }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

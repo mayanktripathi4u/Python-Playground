@@ -1,0 +1,395 @@
+Category,Product,Item
+Grocery,Baking / Bakery,Aata
+Grocery,Baking / Bakery,Baking Powder
+Grocery,Baking / Bakery,Bread
+Grocery,Baking / Bakery,Cake
+Grocery,Baking / Bakery,Cookies
+Grocery,Baking / Bakery,Gram Flour / Besan
+Grocery,Baking / Bakery,Muffins
+Grocery,Baking / Bakery,MultiPurpose Flour / Meda
+Grocery,Baking / Bakery,Pies
+Grocery,Baking / Bakery,Sandwich
+Grocery,Baking / Bakery,Vanila Extract
+Grocery,Baking / Bakery,Whole Wheat
+Grocery,Beverages,Beer
+Grocery,Beverages,Coffee
+Grocery,Beverages,Juice
+Grocery,Beverages,Soda
+Grocery,Beverages,Tea
+Grocery,Beverages,Water
+Grocery,Canned Food,Beans
+Grocery,Canned Food,Chopped Tomato
+Grocery,Canned Food,Condensed Milk
+Grocery,Canned Food,Diced Tomato
+Grocery,Condiments & Spices,Cinnamon
+Grocery,Condiments & Spices,Honey
+Grocery,Condiments & Spices,Ketchup
+Grocery,Condiments & Spices,Mayonnaise
+Grocery,Condiments & Spices,Oregaon
+Grocery,Condiments & Spices,Pepper
+Grocery,Condiments & Spices,Salt
+Grocery,Condiments & Spices,Sugar
+Grocery,Condiments & Spices,Vinegar
+Grocery,Condiments & Spices,Spices
+Grocery,Dairy Product,Butter
+Grocery,Dairy Product,Cheese
+Grocery,Dairy Product,Egg
+Grocery,Dairy Product,Ice-Cream
+Grocery,Dairy Product,Milk
+Grocery,Dairy Product,Yogurt
+Grocery,Frozen Food,Frozen Food
+Grocery,Frozen Food,Paneer
+Grocery,Frozen Food,Frozen Peas
+Grocery,Frozen Food,Tofu
+Grocery,Pasta /Rice,Macaroni
+Grocery,Pasta /Rice,Noodles
+Grocery,Pasta /Rice,Rice
+Grocery,Pasta /Rice,Spaghetti
+Grocery,Pulses-Grains,Channa Dal
+Grocery,Pulses-Grains,Choole
+Grocery,Pulses-Grains,Rajma
+Grocery,Pulses-Grains,Tur Dal
+Grocery,Sauces & Oil,Hot Sauce
+Grocery,Sauces & Oil,Olive Oil
+Grocery,Sauces & Oil,Soy Sauce
+Grocery,Sauces & Oil,Tomato Sauce
+Grocery,Sauces & Oil,Vegetable Oil
+Grocery,Snacks,Chips
+Grocery,Snacks,choclate
+Grocery,Snacks,Crackers
+Grocery,Snacks,nuts
+Grocery,Snacks,peanuts
+Grocery,Snacks,popcorn
+Grocery,Snacks,Pretzels
+Grocery,Spices & Herbs,Basil
+Grocery,Spices & Herbs,Chilli Powder
+Grocery,Spices & Herbs,Coriander
+Grocery,Spices & Herbs,Cumin
+Grocery,Spices & Herbs,Dry Coconut
+Grocery,Spices & Herbs,Dry Ginger
+Grocery,Spices & Herbs,Haldi
+Grocery,Spices & Herbs,Jeera
+Grocery,Spices & Herbs,Mastard Seeds
+Grocery,Spices & Herbs,Mixed Herbs
+Grocery,Spices & Herbs,Paprika
+Grocery,Spices & Herbs,Powder Coconut
+Grocery,Spices & Herbs,Sliced Coconut
+Grocery,Snacks,Sev
+Grocery,Snacks,Namkeen
+Grocery,Snacks,Sweets
+Grocery,Vegetables,Beet Green
+Grocery,Vegetables,Methi Leaves
+Grocery,Vegetables,Spinach / Palak
+Grocery,Vegetables,Beet Root
+Grocery,Vegetables,Bell Pepper
+Grocery,Vegetables,Bhindi
+Grocery,Vegetables,Broccoli
+Grocery,Vegetables,Carrot
+Grocery,Vegetables,Cauliflower
+Grocery,Vegetables,Celery
+Grocery,Vegetables,Corn
+Grocery,Vegetables,Cucumber
+Grocery,Vegetables,Eggplant / Baigan
+Grocery,Vegetables,Garlic
+Grocery,Vegetables,Ginger
+Grocery,Vegetables,Green Beans
+Grocery,Vegetables,Karella
+Grocery,Vegetables,Lemon
+Grocery,Vegetables,Onion
+Grocery,Vegetables,Palak
+Grocery,Vegetables,Parsley
+Grocery,Vegetables,Peas
+Grocery,Vegetables,Potato
+Grocery,Vegetables,Pumpkin
+Grocery,Vegetables,Radish
+Grocery,Vegetables,Sweet Potato
+Grocery,Vegetables,Tamoto
+Grocery,Vegetables,Cilantro - Dhaniya
+Grocery,Fruits,Apple
+Grocery,Fruits,Apricot
+Grocery,Fruits,Avocoda
+Grocery,Fruits,Banana
+Grocery,Fruits,Berries
+Grocery,Fruits,Cherry
+Grocery,Fruits,Coconut
+Grocery,Fruits,Date
+Grocery,Fruits,Dragon Fruit
+Grocery,Fruits,Fig
+Grocery,Fruits,Grapes
+Grocery,Fruits,Guava
+Grocery,Fruits,Kiwi
+Grocery,Fruits,Lychee
+Grocery,Fruits,Mango
+Grocery,Fruits,Melon
+Grocery,Fruits,Nectarine
+Grocery,Fruits,Oranges
+Grocery,Fruits,Papaya
+Grocery,Fruits,Peach
+Grocery,Fruits,Pear
+Grocery,Fruits,Pipeapple
+Grocery,Fruits,Plum
+Grocery,Fruits,Pomegranate
+Grocery,Fruits,Starfruit
+HouseHold,Bedding,Bedding
+HouseHold,Cleaning Supplies,Cleaning Supplies
+HouseHold,General House Hold Supplies,Dishwasher Detergent
+HouseHold,General House Hold Supplies,Laundary Detergent
+HouseHold,Furniture,Furniture
+HouseHold,General House Hold Supplies,Air Freshener
+HouseHold,General House Hold Supplies,Bleach
+HouseHold,General House Hold Supplies,Body Wash
+HouseHold,General House Hold Supplies,Dish Soap
+HouseHold,General House Hold Supplies,Glove
+HouseHold,General House Hold Supplies,Softener
+HouseHold,General House Hold Supplies,Sponge
+HouseHold,Napkins,Napkins
+HouseHold,Paper & Wrap,Aluminium Foil
+HouseHold,Paper & Wrap,Butter Paper
+HouseHold,Pool / Yard Care,Pool / Yard Care
+HouseHold,Small Appliances,Microwave
+HouseHold,Small Appliances,Toaster
+HouseHold,Home décor,Home décor
+HouseHold,Tools,Tools
+Education / Child Care,Education / Child Care,Alimony
+Education / Child Care,Child Care,Baby Sitter
+Education / Child Care,Child Care,Before / After School Care
+Education / Child Care,Education,College
+Education / Child Care,Education,Dance Calss
+Education / Child Care,Education / Child Care,Day Care
+Education / Child Care,Education,Field Trips
+Education / Child Care,Education,Private School
+Education / Child Care,Education ,Registration Fees
+Education / Child Care,Education ,School
+Education / Child Care,Child Care,Toys
+Education / Child Care,Education / Child Care,School Lunch
+Education / Child Care,Education,School Supplies
+Education / Child Care,Education,Sports Class
+Education / Child Care,Education,Study Material
+Education / Child Care,Education,Summer Camp
+Education / Child Care,Education,Kids Tutoring / Tution Fee
+Education / Child Care,Education,School or Extra-curricular activities
+Education / Child Care,Adults,Books
+Education / Child Care,Adults,Online Courses
+Education / Child Care,Adults,Tutoring / Tution Fee
+Education / Child Care,Subscription,AWS Cloud
+Education / Child Care,Subscription,GCP Cloud
+Entertainment,Books / Games / Music / Movie,Books / Games / Music / Movie
+Entertainment,Vacation,Vacation
+Entertainment,Camping,Camping
+Entertainment,Outing,Outing
+Entertainment,Sporting Events,Sporting Events
+Entertainment,Subscriptions,Netflix
+Entertainment,Subscriptions,Amazon Prime
+Entertainment,Subscriptions,Vudu
+Entertainment,Subscriptions,Hulu
+Entertainment,Theater / Play,Theater / Play
+Gifts / Giving,Charities,Charities
+Gifts / Giving,Donation,Donation
+Gifts / Giving,Gift,Anniversary Gift
+Gifts / Giving,Gift,Birthday Gifts
+Gifts / Giving,Gift,Holiday Gift
+Gifts / Giving,Gift,Festivals
+Gifts / Giving,Gift,Other Occuation
+Gifts / Giving,Gift,Teacher Gift
+Health Care,Primary Care,Primary Care
+Health Care,Dental care,Dental care
+Health Care,Specialty care,dermatologists
+Health Care,Specialty care,orthodontics
+Health Care,Specialty care,optometrists
+Health Care,Urgent care,Urgent care
+Health Care,Vision/Glasses, contact lens
+Health Care,First Aid,Band-Aid
+Health Care,First Aid,First Aid
+Health Care,Medical Devices,Therometer
+Health Care,Medications / Prescriptions,Medications
+Health Care,Medications / Prescriptions,Pain Reliever
+Health Care,Medications / Prescriptions,Vitamin C
+Health Care,Medications / Prescriptions,Shots
+Health Care,Medications / Prescriptions,Vaccine
+Health Care,Medications / Prescriptions,Hydrogen Peroxide
+Health Care,Medical Devices,Humidifier
+Health Care,Bill / Charges / Fees,Consult Fee
+Health Care,Bill / Charges / Fees,Visit Charges
+Health Care,Bill / Charges / Fees,Hospital Charges
+Health Care,Medications / Prescriptions,Vitamin D
+Health Care,Medications / Prescriptions,B-Complex
+Health Care,Medications / Prescriptions,Condoms
+Housing,Insurance,Home-Owner Insurance
+Housing,Insurance,Renter Insurance
+Housing,HOA (Homeowners association) fees,HOA FEES
+Housing,Home Services,House cleaning
+Housing,Home Services,Lawn care
+Housing,Home Services,Pest control
+Housing,Large Appliances,Dryer
+Housing,Large Appliances,Oven
+Housing,Large Appliances,Refrigerator
+Housing,Large Appliances,Washer
+Housing,Maintanance,Maintanance
+Housing,Maintanance,Repair
+Housing,Mortgage,Mortgage
+Housing,Property Tax,Property Tax
+Housing,Rent,Rent
+Housing,Security,Devices
+Housing,Security,Home Security Services
+Insurance,Auto Insurance,Auto Insurance
+Insurance,Dental Insurance,Dental Insurance
+Insurance,Vision Insurance,Vision Insurance
+Insurance,Health Insurance,Health Insurance
+Insurance,Home Insurance,Home Insurance
+Insurance,Life Insurance,Life Insurance
+Insurance,Asset Insurance,Jewelry
+Insurance,Other Insurance,Device/Mobile
+Insurance,Other Insurance,Laptop
+Insurance,Medical Insurance,Medical Insurance
+Utilities,Cable,Cable
+Utilities,Phones,Mobile
+Utilities,Phones,Landline
+Utilities,Phones,Home Phone
+Utilities,Electricity,Electricity
+Utilities,Internet,Internet
+Utilities,Natural Gas,Natural Gas
+Utilities,Recycling,Recycling
+Utilities,Sewer,Sewer
+Utilities,Trash,Trash
+Utilities,Water Bill,Water Bill
+Utilities,Yard Waste,Yard Waste
+Food,Restaurants,Breakfast
+Food,Restaurants,Lunch
+Food,Restaurants,Dinner
+Food,Fast Food,Pizza
+Food,Fast Food,Burger
+Food,Drinks,Soft-Drinks
+Food,Drinks,Lassi
+Food,Drinks,Hard-Drinks
+Food,Pet food,Pet Food 
+Clothing,Adults’ clothing,Trouser / Pant / Bottom
+Clothing,Adults’ clothing,Tops / Shirt / T-Shirt - Adult
+Clothing,Adults’ clothing,Saree / Langha / Suit
+Clothing,Adults’ clothing,underclothing / lingerie - Adult
+Clothing,Adults’ Foot-wear,Shoes - Adult
+Clothing,Adults’ Foot-wear,Flip-Flop / Sandals / Slipper
+Clothing,Children’s clothing,Trouser / Pant / Bottom - Kids
+Clothing,Children’s clothing,Tops / Shirt / T-Shirt - Kids
+Clothing,Children’s clothing,underclothing / lingerie - Kids
+Clothing,Children’s Foot-wear,Shoes - Kids
+Clothing,Children’s Foot-wear,Flip-Flop / Sandals / Slipper - Kids
+Clothing,Alterations,Alterations / Stiching
+Clothing,Dry cleaning,Dry cleaning
+Debt,Personal loans,Personal loans
+Debt,Student loans,Student loans
+Debt,Credit cards,Discover Card
+Debt,Credit cards,Citi Card
+Debt,Credit cards,JCPenny
+Debt,Credit cards,The Children Palace
+Transportation / Travel,Car payment / lease payments,Car Payment
+Transportation / Travel,Car warranty,Car warranty
+Transportation / Travel,Gas,Gas
+Transportation / Travel,Tires,Tires
+Transportation / Travel,Maintenance and oil changes,Maintenance and oil changes
+Transportation / Travel,Parking fees,Parking fees
+Transportation / Travel,Repairs,Repairs
+Transportation / Travel,Registration and DMV Fees,Registration and DMV Fees
+Transportation / Travel,Public transportation,Train
+Transportation / Travel,Public transportation,Flight
+Transportation / Travel,Public transportation,Bus
+Transportation / Travel,Cab,Short DIstance
+Transportation / Travel,Cab,Long DIstance
+Transportation / Travel,Tolls,Car Tools
+Transportation / Travel,Hotel,Hotel
+Transportation / Travel,Vacation / Trips,Vacation / Trips
+Transportation / Travel,Roadside assistance (AAA),Roadside assistance (AAA)
+Personal,Gym memberships,
+Personal,Memberships,COstco
+Personal,Memberships,Sams Club
+Personal,Saloon Services,Haircuts
+Personal,Saloon Services,Hair coloring
+Personal,Saloon Services,Hair products
+Personal,Saloon Services,Nail salon
+Personal,Saloon Services,Eyebrows
+Personal,Saloon Services,Massages
+Personal,Saloon Services,SPA
+Personal,Saloon Services,Grooming
+Personal,Saloon Services,Counseling/Therapy
+Personal,Cosmetics,Makeup
+Personal,Kids Care Supplies,Diapers
+Tax,Sales Tax,Tax 1 : 9.25
+Tax,Sales Tax,Tax 2 : 6.25
+Tax,Sales Tax,Tax
+Tax,Federal Tax,Federal Tax
+Tax,State Tax,State Tax
+Tax,Local Tax,Local Tax
+Misc,Fees & Charges,Service Fee
+Misc,Fees & Charges,Late Fee
+Misc,Fees & Charges,Finance Charge
+Misc,Fees & Charges,ATM Fee
+Misc,Fees & Charges,Bank Fee
+Misc,Fees & Charges,Commissions
+Grocery,Vegetables,Chilli
+Grocery,Vegetables,Valor
+Misc,Fees & Charges,Platform Fees
+Transportation / Travel,Accessories,Accessories
+HouseHold,Small Appliances,crockery
+HouseHold,Small Appliances,utensils
+HouseHold,Bedding,Bed-sheet
+HouseHold,Bedding,Bed-Protector
+HouseHold,Bedding,Comforter
+HouseHold,Bedding,Blanket
+Misc,Misc,Misc
+Food,Fast Food,Samosa
+Food,Fast Food,Kachori
+Food,Fast Food,Dal Vada
+Food,Fast Food,Chat
+Food,Fast Food,Pani-Puri
+Misc,Pooja Items,Pooja Item
+Grocery,Fruits,Strawberry
+Grocery,Fruits,Blue-Berries
+Grocery,Condiments & Spices,Eno
+Grocery,Spices & Herbs,Leaves
+Grocery,Vegetables,Lauki / Dudhi
+Grocery,Snacks,Khakhra
+Grocery,Snacks,Alu Bhujia
+Grocery,Baking / Bakery,Mawa
+Personal,Mailing Services,Postage
+Personal,Mailing Services,Courier
+Personal,Mailing Services,Stamps
+Personal,Mailing Services,Envelop
+Personal,Mailing Services,Cards
+HouseHold,Paper & Wrap,Parchment Paper
+Grocery,Sauces & Oil,Pizza Sauce
+Grocery,Vegetables,Pepper / Capsicum / Shimla Mirchi
+Misc,Tips,Tips
+Grocery,Dry-Fruits,Dates
+Grocery,Dry-Fruits,Almonds
+Grocery,Dry-Fruits,Cashew
+Grocery,Dry-Fruits,Walnuts
+Grocery,Dry-Fruits,Peacans
+Grocery,Dry-Fruits,Dry Peach
+Grocery,Dry-Fruits,Raisens
+Grocery,Pulses-Grains,Peanuts
+Grocery,Baking / Bakery,Peanut Butter
+HouseHold,General House Hold Supplies,Hand Soap
+Grocery,Condiments & Spices,Choclate Syrup
+Grocery,Fruits,Raspberry
+Transportation / Travel,Gas,Nissan
+Transportation / Travel,Gas,Toyota
+Grocery,Fruits,Black - berrys
+Grocery,Dry-Fruits,Figs
+HouseHold,Tools,Weight Scale
+Clothing,Bath Wear,Towel
+HouseHold,Paper & Wrap,Paper Towel
+Grocery,Vegetables,Vegetables
+Grocery,Coconut Milk,Cocunut Milk
+Grocery,Fruits,Fruits
+Personal,Personal,Personal
+Grocery,Snacks,Rusk / Toast
+Grocery,Baking / Bakery,Cracked Wheat / Daliya
+Grocery,Dairy Product,Milk Powder
+Grocery,Grocery,Grocery
+Shopping,Shopping,Shopping
+Housing,Large Appliances,T.V.
+Health Care,Medications / Prescriptions,Ayurvedic / Pharma
+HouseHold,Small Appliances,Mud Pot
+HouseHold,Small Appliances,Pot
+Clothing,Adults’ clothing,Sweater / Jackets / Jersey
+Food,Fast Food,Cake/Pastery
+Food,Dine-Out,Dine-Out (Lunch/Dinner)

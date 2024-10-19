@@ -1,0 +1,86 @@
+
+{% extends 'base_template.html' %}
+
+{% block title %}Categories{% endblock %}  <!-- Override the title block -->
+
+{% block additional_css %}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Category Management</h1>
+    <!-- Button to trigger modal -->
+    <button class="btn btn-primary" data-toggle="modal" data-target="#categoryModal">Add Category</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoryModalLabel">Add Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form inside modal -->
+                    <form id="categoryForm">
+                        <div class="form-group">
+                            <label for="name">Category Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter category name">
+                        </div>
+                        <div class="alert alert-danger d-none" id="errorAlert"></div>
+                        <div class="alert alert-success d-none" id="successAlert"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitCategory">Add Category</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#submitCategory').on('click', function() {
+            // Get form data
+            var categoryName = $('#name').val();
+
+            // Make the POST request to add the category
+            $.ajax({
+                url: "{{ url_for('core.add_category') }}",
+                method: 'POST',
+                data: {
+                    name: categoryName,
+                    csrf_token: "{{ form.csrf_token._value() }}"
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $('#successAlert').text(response.message).removeClass('d-none');
+                        $('#errorAlert').addClass('d-none');
+                        $('#name').val('');  // Clear form field
+                    } else {
+                        $('#errorAlert').text(response.message).removeClass('d-none');
+                        $('#successAlert').addClass('d-none');
+                    }
+                },
+                error: function() {
+                    $('#errorAlert').text('An error occurred while adding the category.').removeClass('d-none');
+                    $('#successAlert').addClass('d-none');
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}

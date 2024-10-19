@@ -1,0 +1,112 @@
+{% extends 'base_template.html' %}
+
+{% block title %}Manage Expense{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <h2>Add a New Expense</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {{ form.purchase_from.label }} {{ form.purchase_from(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.purchase_date.label }} {{ form.purchase_date(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.total_amount.label }} {{ form.total_amount(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.description.label }} {{ form.description(class="form-control", rows=4) }}
+        </div>
+
+        <div class="form-group">
+            {{ form.submit_expense(class="btn btn-primary") }}
+        </div>
+    </form>
+
+
+    <!-- Display current month's expenses -->
+    <h3>Current Month's Expenses</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Purchase From</th>
+                <th>Purchase Date</th>
+                <th>Amount</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in current_month_expenses %}
+            <tr>
+                <td>{{ expense.purchase_from }}</td>
+                <td>{{ expense.purchase_date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ expense.total_amount }}</td>
+                <td>{{ expense.description }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">No expenses found for this month.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Search form for past expenses -->
+    <h3>Search Past Expenses</h3>
+    <form method="POST">
+        <div class="form-group">
+            {{ form.search_query.label }} {{ form.search_query(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.start_date.label }} {{ form.start_date(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.end_date.label }} {{ form.end_date(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.submit_search(class="btn btn-primary") }}
+        </div>
+    </form>
+
+    <!-- Display search results -->
+    {% if search_results %}
+    <h4>Search Results</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Purchase From</th>
+                <th>Purchase Date</th>
+                <th>Amount</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in search_results %}
+            <tr>
+                <td>{{ expense.purchase_from }}</td>
+                <td>{{ expense.purchase_date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ expense.total_amount }}</td>
+                <td>{{ expense.description }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">No expenses found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+
+</div>
+{% endblock %}

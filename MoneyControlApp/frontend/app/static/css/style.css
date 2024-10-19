@@ -1,0 +1,17 @@
+.alert-success {
+    color: green;        /* Text color */
+    background-color: #d4edda;  /* Light green background */
+    border: 1px solid green;  /* Green border */
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.alert-error {
+    color: red;        /* Text color */
+    background-color: #d4edda;  /* Light green background */
+    border: 1px solid red;  /* Green border */
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}

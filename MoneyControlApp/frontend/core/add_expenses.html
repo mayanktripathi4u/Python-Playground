@@ -1,0 +1,165 @@
+{% extends 'base_template.html' %}
+
+{% block title %}Manage Expense{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <a href="{{ url_for('core.dashboard') }}" class="btn btn-info mt-4">Dashboard</a>
+    <br>
+    <br>
+    <h2>Add a New Expense</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form.purchase_from.label }} {{ form.purchase_from(class="form-control") }}
+            </div>
+
+            <div class="form-group col-md-4">
+                {{ form.purchase_date.label }} {{ form.purchase_date(class="form-control") }}
+            </div>
+
+            <div class="form-group col-md-4">
+                {{ form.total_amount.label }} {{ form.total_amount(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form.description.label }} {{ form.description(class="form-control", rows=1) }}
+        </div>
+
+        <div id="payment-details"> 
+            {% set idx = 0 %}
+            {% for payment_form in form.payment_details %}
+                <div class="form-row payment-row" id="payment-row-{{ idx }}">
+                    {{ payment_form.csrf_token }}
+                    <div class="form-group col-md-3">
+                        {{ payment_form.pay_mode.label }} {{ payment_form.pay_mode(class="form-control") }}
+                    </div>
+                    <div class="form-group col-md-3">
+                        {{ payment_form.amount_paid.label }} {{ payment_form.amount_paid(class="form-control") }}
+                    </div>
+                </div>
+                {% set idx = idx + 1 %}
+            {% endfor %}
+        </div>
+
+        <button type="button" class="btn btn-secondary" id="add-row">Add Another Payment</button>
+        <br><br>
+
+        <div class="form-group">
+            {{ form.submit_expense(class="btn btn-primary") }}
+        </div>
+    </form>
+
+
+    <!-- Search form for past expenses -->
+    <h3>Search Expenses</h3>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form.search_query.label }} {{ form.search_query(class="form-control") }}
+            </div>
+
+        
+            <div class="form-group col-md-4">
+                {{ form.start_date.label }} {{ form.start_date(class="form-control") }}
+            </div>
+
+            <div class="form-group col-md-4">
+                {{ form.end_date.label }} {{ form.end_date(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form.submit_search(class="btn btn-primary") }}
+        </div>
+    </form>
+
+    <!-- Display search results -->
+    {% if search_results %}
+    <h4>Search Results</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Purchase From</th>
+                <th>Purchase Date</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Payment Detail</th>
+                <th>Add/Update Details</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in search_results %}
+            <tr>
+                <td>{{ expense.purchase_from }}</td>
+                <td>{{ expense.purchase_date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ expense.total_amount }}</td>
+                <td>{{ expense.description }}</td>
+                <td>
+                    <ul>
+                        {% for pay in expense.payment_details %}
+                            <li>{{ pay.pay_mode }} => $ {{ pay.amount_paid }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td><a href="{{ url_for('core.add_expense_details', expense_id=expense.id) }}">Details</a></td>
+                <td><a href="{{ url_for('core.edit_expanse', expense_id=expense.id) }}">Edit</a></td>
+            </tr>
+            
+            {% else %}
+            <tr>
+                <td colspan="4">No expenses found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+
+</div>
+
+<script>
+    // Track the number of payment form rows
+    let paymentFormCount = {{ form.payment_details|length }};
+
+    // Get the initial options for the pay_mode dropdown
+    const payModeOptions = document.querySelector(`#payment-row-0 select[name^="payment_details-"]`).innerHTML;
+
+    // Function to dynamically add new payment row
+    document.getElementById('add-row').addEventListener('click', function() {
+        let paymentDetailsDiv = document.getElementById('payment-details');
+
+        // Create a new div for the new payment row
+        let newPaymentRow = document.createElement('div');
+        newPaymentRow.classList.add('form-row', 'payment-row');
+        newPaymentRow.id = `payment-row-${paymentFormCount}`;
+
+        // Add new HTML form inputs for payment mode and amount, populate pay_mode options
+        newPaymentRow.innerHTML = `
+            <div class="form-group col-md-3">
+                <label for="payment_details-${paymentFormCount}-pay_mode">Payment Mode</label>
+                <select class="form-control" id="payment_details-${paymentFormCount}-pay_mode" name="payment_details-${paymentFormCount}-pay_mode">
+                    ${payModeOptions}
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="payment_details-${paymentFormCount}-amount_paid">Amount Paid</label>
+                <input class="form-control" id="payment_details-${paymentFormCount}-amount_paid" name="payment_details-${paymentFormCount}-amount_paid" type="number" step="0.01" min="0">
+            </div>
+        `;
+
+        // Append the new row to the payment details div
+        paymentDetailsDiv.appendChild(newPaymentRow);
+
+        // Increment the paymentFormCount for future rows
+        paymentFormCount++;
+    });
+</script>
+
+{% endblock %}

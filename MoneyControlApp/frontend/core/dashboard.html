@@ -1,0 +1,137 @@
+{% extends 'base_template.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <!-- Header displaying the user's name -->
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Welcome, {{ user_name }}!</h2>
+        </div>
+    </div>
+
+    <h1>Dashboard</h1>
+    <h2>Important Links</h2>
+    <a href="{{ url_for('core.list_categories_v2') }}" class="btn btn-info mt-4">Manage Category</a>
+    <a href="{{ url_for('core.add_expense') }}" class="btn btn-info mt-4">Add Expense</a>
+
+    <a href="#" class="btn btn-info mt-4">Logout</a>
+    <br>
+    <br>
+    <h3>Dashboard for Current Month</h3>
+
+    <div class="row">
+        <!-- Expense card -->
+        <div class="col-md-3">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-header">Total Expenses</div>
+                <div class="card-body">
+                    <h5 class="card-title">$ {{ total_expenses }}</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Income card -->
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Total Income</div>
+                <div class="card-body">
+                    <h5 class="card-title">$ {{ total_income }}</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Balance card -->
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Balance</div>
+                <div class="card-body">
+                    <h5 class="card-title">Opening : ₹ {{ opening_balance }}</h5>
+                    <h5 class="card-title">Current : ₹ {{ current_balance }}</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Spending Category card -->
+        <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-header">Top Spending Category</div>
+                <div class="card-body">
+                    {% if top_spending_category %}
+                        <h5 class="card-title">{{ top_spending_category[0] }}</h5>
+                        <p>Total: $ {{ "%.2f" | format(top_spending_category[1]) }}</p>
+                    {% else %}
+                        <h5 class="card-title">No Data</h5>
+                    {% endif %}
+                </div>
+            </div>
+        </div> 
+
+        
+
+
+    </div>
+
+    <div class="row">
+        <!-- Top Spending Category - Product card -->
+        <div class="col-md-6">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-header">Top 5 Spending Product</div>
+                <div class="card-body">
+                    {% if top_spending_product %}
+                        {% for row in top_spending_product %}
+                            <h5 class="card-title">{{ row[0] }} - {{ row.product_name }}
+                                <p>$ {{ "%.2f" | format(row.total_spent) }}</p>
+                            </h5>
+                        {% endfor %}
+                    {% else %}
+                        <h5 class="card-title">No Data</h5>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Expense Trend Chart -->
+    <div class="row">
+        <div class="col-md-12">
+            <canvas id="expenseTrendChart"></canvas>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    var ctx = document.getElementById('expenseTrendChart').getContext('2d');
+    var expenseTrendChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ monthly_expenses | map(attribute='month_name') | list | tojson }},
+            datasets: [{
+                label: 'Monthly Expenses',
+                data: {{ monthly_expenses | map(attribute='total_spent') | list | tojson }},
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script> 
+
+{% endblock %}

@@ -1,0 +1,12 @@
+<form action="/repeatingformsubmit" method="POST" role="form">
+ {{ form.hidden_tag() }}
+ 
+ {{ form.a1.label }} {{ form.a1() }} <br>
+
+ {% for b in form.a2 %}
+    {{ b.form.b1.label }} {{ b.form.b1 }}
+    {{ b.form.b2.label }} {{ b.form.b2 }}
+    <br>
+ {% endfor %}
+ {{ form.s }}
+</form>
