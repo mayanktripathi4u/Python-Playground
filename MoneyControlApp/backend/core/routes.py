@@ -106,11 +106,20 @@ def dashboard():
     ).first()  # Get the top category
     
     # Expense trend (for chart)
+    # monthly_expenses = db.session.query(
+    #     func.date_format(Expense.purchase_date, '%M').label('month_name'),  # Get month name
+    #     func.extract('month', Expense.purchase_date).label('month'),
+    #     func.sum(Expense.total_amount).label('total_spent')
+    # ).group_by(func.date_format(Expense.purchase_date, '%M'), func.extract('month', Expense.purchase_date)).order_by('month', func.min(Expense.purchase_date)).all()
+
+    # Filtering for Month-Year
     monthly_expenses = db.session.query(
-        func.date_format(Expense.purchase_date, '%M').label('month_name'),  # Get month name
+        func.date_format(Expense.purchase_date, '%M-%Y').label('month_name'),  # Get month name and year
         func.extract('month', Expense.purchase_date).label('month'),
+        func.extract('year', Expense.purchase_date).label('year'),
         func.sum(Expense.total_amount).label('total_spent')
-    ).group_by(func.date_format(Expense.purchase_date, '%M'), func.extract('month', Expense.purchase_date)).order_by('month', func.min(Expense.purchase_date)).all()
+    ).group_by(func.date_format(Expense.purchase_date, '%M-%Y'), func.extract('month', Expense.purchase_date), func.extract('year', Expense.purchase_date)).order_by('year', 'month', func.min(Expense.purchase_date)).all()
+
 
     top_spending_product = top_5_category_products()
 

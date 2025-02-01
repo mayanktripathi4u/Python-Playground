@@ -109,7 +109,7 @@
                     </ul>
                 </td>
                 <td><a href="{{ url_for('core.add_expense_details', expense_id=expense.id) }}">Details</a></td>
-                <td><a href="{{ url_for('core.edit_expanse', expense_id=expense.id) }}">Edit</a></td>
+                <td><a href="{{ url_for('core.edit_expense', expense_id=expense.id if expense.id else 0) }}">Edit</a></td>
             </tr>
             
             {% else %}
