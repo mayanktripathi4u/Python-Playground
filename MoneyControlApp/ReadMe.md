@@ -74,6 +74,13 @@ money_control_app/
  cd Python-Playground/MoneyControlApp/backend
  python run.py    
 
+ URL: http://127.0.0.1:5000
+ 
+ sudo lsof -t -i :8000 | xargs sudo kill -9
+
+ Login: admin@admin.com
+ Pwd: admin
+
 # Check the Query in Terminal
  cd Python-Playground/MoneyControlApp/backend
  flask shell
