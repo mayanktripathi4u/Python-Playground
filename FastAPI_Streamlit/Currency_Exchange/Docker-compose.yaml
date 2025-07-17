@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - 8080: 8080
+    command: uvicorn backend_main:app --reload --workers 1 --host 0.0.0.0 --port 8080
+    networks:
+      - deploy_network
+    container_name: backend
+  streamlit:
+    build: ./frontend/
+    command: streamlit run frontend_app.py --server.port 8501
+    ports:
+      - 8501: 8501
+    networks:
+      - deploy_network
+    container_name: streamlit
+  redis:
+    image: redis:latest
+    ports:
+      - 6379: 6379
+    networks:
+      - deploy_network
+    command: redis-server --appendonly yes
+networks:
+ 
