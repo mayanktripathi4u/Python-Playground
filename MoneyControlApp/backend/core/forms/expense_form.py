@@ -14,7 +14,8 @@ class PaymentDetailForm(FlaskForm):
     # Dropdown populated from PayMode model
     pay_mode = QuerySelectField(
         'Payment Mode', 
-        query_factory=lambda: PayMode.query.all(), 
+        # query_factory=lambda: PayMode.query.all(), 
+        query_factory=lambda: PayMode.query.order_by(PayMode.pay_mode).all(), 
         get_label='pay_mode', 
         allow_blank=False,
         validators=[DataRequired()]
